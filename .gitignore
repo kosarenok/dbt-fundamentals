@@ -3,3 +3,6 @@
 target/
 dbt_packages/
 logs/
+.idea
+.DS_Store
+.venv
