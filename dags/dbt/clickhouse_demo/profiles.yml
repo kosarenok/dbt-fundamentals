@@ -3,8 +3,8 @@ clickhouse_imdb:
   outputs:
     dev:
       type: clickhouse
-      schema: imdb_dbt
-      host: localhost
+      schema: imdb
+      host: "{{ env_var('CLICKHOUSE_HOST', 'localhost') }}"
       port: 8123
       user: user
       password: password
