@@ -20,6 +20,12 @@ It includes a sample pipeline to process and summarize actor data from an IMDb-l
 3. Environment variables configured in a `.env` file (see `.env.example` for reference).
 
 ---
+## Screenshot of the Airflow UI with dbt models visualized:
+<p>
+  <img src="docs/images/example_dag.png" alt="DBT Pipeline in Airflow UI" width="3066"/>
+  <br>
+  <em>DBT models visualization in Airflow UI via astronomer-cosmos</em>
+</p>
 
 ## Setup Instructions
 
