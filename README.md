@@ -55,3 +55,11 @@ docker-compose up -d
 Open your browser and navigate to `http://localhost:8080`. Log in with the credentials specified in the `.env` file.
 The default username and password are both `admin`.
 
+### 5. Run dbt locally
+
+If you want to run dbt locally, make sure you have dbt environment set up.
+```bash
+export DBT_PROFILES_DIR=dags/dbt/clickhouse_demo
+export DBT_PROJECT_DIR=dags/dbt/clickhouse_demo
+```
+
