@@ -1,8 +1,5 @@
 """
 Run a dbt Core project as a task group with Cosmos
-
-Simple DAG showing how to run a dbt project as a task group, using
-an Airflow connection and injecting a variable into the dbt project.
 """
 
 from airflow import DAG
@@ -10,8 +7,8 @@ from airflow.decorators import task
 from airflow.utils.dates import days_ago
 from cosmos import DbtTaskGroup, ProjectConfig, ProfileConfig, ExecutionConfig
 
-from datetime import datetime, timedelta
-import os
+from datetime import timedelta
+from config.variables import DBT_EXECUTABLE_PATH, DBT_PROJECT_PATH
 
 default_args = {
     "owner": "airflow",
@@ -21,9 +18,6 @@ default_args = {
     "retries": 1,
     "retry_delay": timedelta(minutes=1),
 }
-
-DBT_PROJECT_PATH = f"{os.environ['AIRFLOW_HOME']}/dags/dbt/clickhouse_demo"
-DBT_EXECUTABLE_PATH = f"{os.environ['AIRFLOW_HOME']}/dbt_venv/bin/dbt"
 
 profile_config = ProfileConfig(
     profile_name="clickhouse_imdb",
@@ -47,15 +41,16 @@ with DAG(
 ) as dag:
     @task
     def start_processing():
+        """Execute before the DBT task group"""
         return "Starting DBT processing"
 
 
     @task
     def end_processing(status):
+        """Execute after the DBT task group"""
         return f"Completed DBT processing: {status}"
 
-
-    # Create the DbtTaskGroup outside of any task function
+    # Define a dbt task group for the actors_summary model
     transform_data = DbtTaskGroup(
         group_id="transform_data",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
