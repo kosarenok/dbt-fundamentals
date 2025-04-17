@@ -1,0 +1,13 @@
+numpy==1.26.4
+pyarrow==14.0.1
+pandas==2.0.2
+sqlalchemy==1.4.36
+psycopg2-binary==2.9.10
+python-dotenv==1.0.1
+requests==2.32.3
+apache-airflow==2.10.5
+airflow-clickhouse-plugin==1.4.0
+astronomer-cosmos==1.9.2
+clickhouse-driver~=0.2.0
+dbt-core==1.8.0
+dbt-clickhouse==1.8.0
